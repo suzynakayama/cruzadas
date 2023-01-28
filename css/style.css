@@ -1,0 +1,395 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Montserrat", sans-serif;
+	margin: 0px auto;
+	margin-bottom: 30px;
+}
+
+h1 {
+	font-family: "Lobster", cursive;
+	text-align: center;
+	font-size: 3rem;
+}
+
+#topam {
+	text-align: center;
+	visibility: hidden;
+}
+
+#board {
+	border-spacing: 0;
+	border: 2px solid #000;
+	margin: 20px auto;
+}
+
+#board tr {
+	border: 2px solid #000;
+}
+
+#board td {
+	height: 50px;
+	width: 50px;
+	border: 1px solid #000;
+	text-align: center;
+	font-size: 18px;
+}
+
+.b {
+	background-color: #000;
+}
+
+.filled {
+	background-color: #fff;
+	animation: FillIn;
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
+}
+
+.highlight {
+	color: #fff;
+	background-color: mediumblue;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: none !important;
+	animation: Highlight;
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+#question-area {
+	border: 2px solid #000;
+	border-radius: 5px;
+	margin: 0 auto;
+	padding: 10px;
+	width: 55%;
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	box-shadow: 5px 10px 10px 0 #ccc;
+}
+
+#question {
+	text-align: center;
+	margin: unset;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.5rem 1.2rem;
+	border: 3px solid #00d7c3;
+	border-radius: 5px;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	color: #00d7c3;
+	font-weight: bold;
+	letter-spacing: 0.15rem;
+	background-color: transparent;
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+}
+
+.btn:hover {
+	box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 15px 2px #00d7c3;
+}
+
+.btn:active {
+	box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 15px 2px #00d7c3 inset;
+}
+
+#clue {
+	display: none;
+}
+
+#answer-area {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+#answer {
+	width: 65%;
+	font-family: "Montserrat", sans-serif;
+	border: none;
+	border-bottom: 1.5px solid #000;
+}
+
+#answer:focus {
+	font-size: 1rem;
+	outline: none;
+	border-bottom: 2px solid #000;
+}
+
+#wrong-answer {
+	display: none;
+	position: fixed;
+	z-index: 2;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ccc;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+#retry-box {
+	background-color: #fff;
+	border: 2px solid #000;
+	border-radius: 5px;
+	margin: 0 auto;
+	padding: 15px;
+	width: 75%;
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	box-shadow: 5px 10px 10px 0 #ccc;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+}
+
+@keyframes FillIn {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes Highlight {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.5);
+	}
+}
+
+/* fireworks  - by https://www.codewithrandom.com/2022/07/14/fireworks-animation-using-html/ */
+@keyframes Firework {
+	0% {
+		transform: Translate(Var(--X), Var(--InitialY));
+		width: Var(--InitialSize);
+		opacity: 1;
+	}
+	50% {
+		width: 0.5vmin;
+		opacity: 1;
+	}
+	100% {
+		width: Var(--FinalSize);
+		opacity: 0;
+	}
+}
+
+.firework,
+.firework::before,
+.firework::after {
+	--InitialSize: 0.5vmin;
+	--FinalSize: 50vmin;
+	--ParticleSize: 1.5vmin;
+	--Color1: Yellow;
+	--Color2: Khaki;
+	--Color3: White;
+	--Color4: #ffff66;
+	--Color5: Gold;
+	--Color6: #ffff99;
+	--Y: -30vmin;
+	--X: -50%;
+	--InitialY: 60vmin;
+	content: "";
+	animation: Firework 2s Infinite;
+	position: Absolute;
+	top: 50%;
+	left: 50%;
+	transform: Translate(-50%, Var(--Y));
+	width: Var(--InitialSize);
+	aspect-ratio: 1;
+	background: 
+    /*
+    Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 0% 0%,
+    Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 100% 0%,
+    Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 100% 100%,
+    Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 0% 100%,
+    */ Radial-Gradient(
+				Circle,
+				Var(--Color1) Var(--ParticleSize),
+				#0000 0
+			)
+			50% 0%,
+		Radial-Gradient(Circle, Var(--Color2) Var(--ParticleSize), #0000 0) 100%
+			50%,
+		Radial-Gradient(Circle, Var(--Color3) Var(--ParticleSize), #0000 0) 50%
+			100%,
+		Radial-Gradient(Circle, Var(--Color4) Var(--ParticleSize), #0000 0) 0%
+			50%,
+		/* Bottom Right */
+			Radial-Gradient(Circle, Var(--Color5) Var(--ParticleSize), #0000 0)
+			80% 90%,
+		Radial-Gradient(Circle, Var(--Color6) Var(--ParticleSize), #0000 0) 95%
+			90%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 90%
+			70%,
+		Radial-Gradient(Circle, Var(--Color2) Var(--ParticleSize), #0000 0) 100%
+			60%,
+		Radial-Gradient(Circle, Var(--Color3) Var(--ParticleSize), #0000 0) 55%
+			80%,
+		Radial-Gradient(Circle, Var(--Color4) Var(--ParticleSize), #0000 0) 70%
+			77%,
+		/* Bottom Left */
+			Radial-Gradient(Circle, Var(--Color5) Var(--ParticleSize), #0000 0)
+			22% 90%,
+		Radial-Gradient(Circle, Var(--Color6) Var(--ParticleSize), #0000 0) 45%
+			90%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 33%
+			70%,
+		Radial-Gradient(Circle, Var(--Color2) Var(--ParticleSize), #0000 0) 10%
+			60%,
+		Radial-Gradient(Circle, Var(--Color3) Var(--ParticleSize), #0000 0) 31%
+			80%,
+		Radial-Gradient(Circle, Var(--Color4) Var(--ParticleSize), #0000 0) 28%
+			77%,
+		Radial-Gradient(Circle, Var(--Color5) Var(--ParticleSize), #0000 0) 13%
+			72%,
+		/* Top Left */
+			Radial-Gradient(Circle, Var(--Color6) Var(--ParticleSize), #0000 0)
+			80% 10%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 95%
+			14%,
+		Radial-Gradient(Circle, Var(--Color2) Var(--ParticleSize), #0000 0) 90%
+			23%,
+		Radial-Gradient(Circle, Var(--Color3) Var(--ParticleSize), #0000 0) 100%
+			43%,
+		Radial-Gradient(Circle, Var(--Color4) Var(--ParticleSize), #0000 0) 85%
+			27%,
+		Radial-Gradient(Circle, Var(--Color5) Var(--ParticleSize), #0000 0) 77%
+			37%,
+		Radial-Gradient(Circle, Var(--Color6) Var(--ParticleSize), #0000 0) 60%
+			7%,
+		/* Top Right */
+			Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0)
+			22% 14%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 45%
+			20%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 33%
+			34%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 10%
+			29%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 31%
+			37%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 28%
+			7%,
+		Radial-Gradient(Circle, Var(--Color1) Var(--ParticleSize), #0000 0) 13%
+			42%;
+	background-size: Var(--InitialSize) Var(--InitialSize);
+	background-repeat: No-Repeat;
+}
+
+.firework::before {
+	--X: -50%;
+	--Y: -50%;
+	--InitialY: -50%;
+	transform: Translate(-50%, -50%) Rotate(40deg) Scale(1.3) RotateY(40deg);
+}
+
+.firework::after {
+	--X: -50%;
+	--Y: -50%;
+	--InitialY: -50%;
+	transform: Translate(-50%, -50%) Rotate(170deg) Scale(1.15) RotateY(-30deg);
+}
+
+.firework:nth-child(2) {
+	--X: 30vmin;
+}
+
+.firework:nth-child(2),
+.firework:nth-child(2)::before,
+.firework:nth-child(2)::after {
+	--Color1: Pink;
+	--Color2: Violet;
+	--Color3: Fuchsia;
+	--Color4: Orchid;
+	--Color5: Plum;
+	--Color6: Lavender;
+	--FinalSize: 40vmin;
+	left: 30%;
+	top: 60%;
+	animation-delay: -0.25s;
+}
+
+.firework:nth-child(3) {
+	--X: -30vmin;
+	--Y: -50vmin;
+}
+
+.firework:nth-child(3),
+.firework:nth-child(3)::before,
+.firework:nth-child(3)::after {
+	--Color1: Cyan;
+	--Color2: Lightcyan;
+	--Color3: Lightblue;
+	--Color4: PaleTurquoise;
+	--Color5: SkyBlue;
+	--Color6: Lavender;
+	--FinalSize: 35vmin;
+	left: 70%;
+	top: 60%;
+	animation-delay: -0.4s;
+}
+
+.firework:nth-child(4) {
+	--X: -30vmin;
+	--Y: -50vmin;
+}
+
+.firework:nth-child(4),
+.firework:nth-child(4)::before,
+.firework:nth-child(4)::after {
+	--Color1: #cc0000;
+	--Color2: #ff5050;
+	--Color3: #ff6600;
+	--Color4: #ff3300;
+	--Color5: #ff0066;
+	--Color6: #ff6666;
+	--FinalSize: 45vmin;
+	left: 35%;
+	top: 60%;
+	animation-delay: -0.65s;
+}
+
+.firework:nth-child(5) {
+	--X: 30vmin;
+}
+
+.firework:nth-child(5),
+.firework:nth-child(5)::before,
+.firework:nth-child(5)::after {
+	--Color1: #00ff00;
+	--Color2: #99ff99;
+	--Color3: #66ff33;
+	--Color4: #009900;
+	--Color5: #99ff99;
+	--Color6: #99ff33;
+	--FinalSize: 50vmin;
+	left: 60%;
+	top: 60%;
+	animation-delay: -0.8s;
+}
